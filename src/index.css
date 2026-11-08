@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: dark; scroll-behavior: smooth; }
+  body {
+    @apply bg-navy-900 text-slate-200 font-sans antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 85% -10%, rgba(182,154,82,.07), transparent 60%),
+      radial-gradient(900px 500px at 0% 110%, rgba(101,124,85,.08), transparent 60%);
+    background-attachment: fixed;
+  }
+  ::selection { background: rgba(182,154,82,.35); }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-gold-400; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold
+           transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50 select-none;
+  }
+  .btn-gold { @apply bg-gold-500 text-navy-900 hover:bg-gold-400 active:bg-gold-600; }
+  .btn-outline { @apply border border-gold-500/60 text-gold-300 hover:bg-gold-500/10; }
+  .btn-ghost { @apply text-slate-300 hover:bg-white/5; }
+  .card { @apply rounded-lg border border-white/[.07] bg-navy-700/60 backdrop-blur-sm; }
+  .input {
+    @apply w-full rounded-md border border-white/10 bg-navy-900/70 px-3.5 py-2.5 text-sm text-slate-100
+           placeholder:text-slate-500 transition-colors focus:border-gold-500/70 focus:outline-none;
+  }
+  .label { @apply mb-1.5 block text-xs font-medium text-slate-400; }
+  .badge { @apply inline-flex items-center gap-1 rounded px-2 py-0.5 text-[11px] font-semibold ring-1 ring-inset; }
+  .badge-ok { @apply bg-olive-500/15 text-olive-400 ring-olive-500/30; }
+  .badge-warn { @apply bg-gold-500/15 text-gold-300 ring-gold-500/30; }
+  .badge-bad { @apply bg-red-500/15 text-red-300 ring-red-500/30; }
+  .badge-mute { @apply bg-white/5 text-slate-400 ring-white/10; }
+  .eyebrow { @apply text-xs font-semibold tracking-[.2em] text-gold-400 uppercase; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+}
+
+/* mono for latin identifiers inside RTL text */
+.ltr { direction: ltr; unicode-bidi: isolate; }
